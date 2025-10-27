@@ -7,9 +7,28 @@
 generator client {
   provider = "prisma-client"
   output   = "../generated/prisma"
+  // engineType  = "client"
+  moduleFormat  = "esm"
 }
 
 datasource db {
   provider = "mysql"
   url      = env("DATABASE_URL")
+}
+
+
+model Employe {
+  id        Int     @default(autoincrement()) @id
+  role      Role 
+  name      String  @db.VarChar(255)
+  email     String  @db.VarChar(255)  @unique
+  phone     String? @db.VarChar(255)
+  createdAt DateTime  @default(now()) 
+  updatedAt DateTime  @updatedAt
+}
+
+enum Role {
+  USER
+  EDITOR
+  ADMIN
 }
