@@ -26,7 +26,7 @@ export class EmployesService {
 		return this.databaseService.employe.findMany();
 	}
 
-	async findOne(id: number): Promise<Employe> {
+	async findOne(id: number): Promise<Employe | null> {
 		return this.databaseService.employe.findUnique({
 			where: { id },
 		});
